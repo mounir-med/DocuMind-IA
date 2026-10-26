@@ -1,0 +1,96 @@
+
+    ╔═══════════════════════════════════════════════════════════════════╗
+    ║                                                                   ║
+    ║                      ██████╗  ██████╗  ██████╗██╗   ██╗         ║
+    ║                      ██╔══██╗██╔═══██╗██╔════╝██║   ██║         ║
+    ║                      ██║  ██║██║   ██║██║     ██║   ██║         ║
+    ║                      ██║  ██║██║   ██║██║     ██║   ██║         ║
+    ║                      ██████╔╝╚██████╔╝╚██████╗╚██████╔╝         ║
+    ║                      ╚═════╝  ╚═════╝  ╚═════╝ ╚═════╝          ║
+    ║                                                                   ║
+    ║                     MIND AI - Version 1.0.0                      ║
+    ║                 Assistant IA pour Documents PDF                  ║
+    ║                                                                   ║
+    ╚═══════════════════════════════════════════════════════════════════╝
+
+    ╔═══════════════════════════════════════════════════════════════════╗
+    ║                         🎯 DÉMARRAGE RAPIDE                       ║
+    ╚═══════════════════════════════════════════════════════════════════╝
+
+    ┌───────────────────────────────────────────────────────────────────┐
+    │  📖 ÉTAPE 1 : Lire la documentation de démarrage                  │
+    │                                                                   │
+    │     Ouvrir le fichier : COMMENCER-ICI.md                         │
+    │                                                                   │
+    │     Ce fichier vous orientera selon votre profil !               │
+    └───────────────────────────────────────────────────────────────────┘
+
+    ┌───────────────────────────────────────────────────────────────────┐
+    │  🚀 ÉTAPE 2 : Lancer l'application                                │
+    │                                                                   │
+    │     Terminal 1 (Backend) :                                       │
+    │     .\start-backend.ps1                                          │
+    │                                                                   │
+    │     Terminal 2 (Frontend) :                                      │
+    │     .\start-frontend.ps1                                         │
+    └───────────────────────────────────────────────────────────────────┘
+
+    ┌───────────────────────────────────────────────────────────────────┐
+    │  🌐 ÉTAPE 3 : Accéder à l'application                            │
+    │                                                                   │
+    │     Application  : http://localhost:3000                         │
+    │     API Docs     : http://127.0.0.1:8000/docs                    │
+    └───────────────────────────────────────────────────────────────────┘
+
+    ╔═══════════════════════════════════════════════════════════════════╗
+    ║                       ✨ FONCTIONNALITÉS                          ║
+    ╚═══════════════════════════════════════════════════════════════════╝
+
+        📄  Upload de PDF avec extraction automatique
+        💬  Chat IA avec pipeline RAG complet
+        📝  Génération de résumés (3 types)
+        🎓  QCM interactifs automatiques
+        🔄  Comparaison multi-documents
+        ⚙️   Configuration runtime
+        🎨  Mode clair/sombre
+        📱  Design responsive
+
+    ╔═══════════════════════════════════════════════════════════════════╗
+    ║                       📚 DOCUMENTATION                             ║
+    ╚═══════════════════════════════════════════════════════════════════╝
+
+        📌  INDEX-DOCUMENTATION.md    → Index complet
+        🚀  COMMENCER-ICI.md          → Point d'entrée
+        📖  DEMARRAGE-RAPIDE.md       → Guide utilisateur
+        📊  STATUS.md                 → État technique
+        🏗️   ARCHITECTURE-VISUELLE.md  → Schémas
+        👨‍💻  GUIDE-DEVELOPPEUR.md      → Guide développement
+        📝  AIDE-MEMOIRE.md           → Référence rapide
+
+    ╔═══════════════════════════════════════════════════════════════════╗
+    ║                         ✅ STATUT PROJET                          ║
+    ╚═══════════════════════════════════════════════════════════════════╝
+
+        Backend FastAPI         : ✅ OPÉRATIONNEL
+        Frontend Next.js        : ✅ OPÉRATIONNEL
+        Tests                   : ✅ 10/10 passent
+        Documentation           : ✅ COMPLÈTE
+        Configuration           : ✅ PRÊTE
+
+    ╔═══════════════════════════════════════════════════════════════════╗
+    ║                        🔧 STACK TECHNIQUE                          ║
+    ╚═══════════════════════════════════════════════════════════════════╝
+
+        Backend  : FastAPI • Python 3.11 • ChromaDB • SQLite
+        Frontend : Next.js 15 • React 19 • TypeScript • Tailwind
+        AI/ML    : sentence-transformers • OpenAI/Ollama
+        Tests    : pytest • 10 tests automatisés
+
+    ╔═══════════════════════════════════════════════════════════════════╗
+    ║                      🎯 PRÊT À ÊTRE UTILISÉ !                     ║
+    ╚═══════════════════════════════════════════════════════════════════╝
+
+            Lisez COMMENCER-ICI.md puis lancez l'application !
+
+                            Bonne utilisation ! 🚀
+

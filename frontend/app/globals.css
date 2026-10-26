@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas: 250 249 246;
+  --surface: 255 255 255;
+  --ink: 28 25 23;
+  --muted: 87 83 78;
+  --line: 231 229 228;
+  --accent: 79 70 229;
+}
+
+.dark {
+  --canvas: 15 18 24;
+  --surface: 24 28 36;
+  --ink: 244 244 245;
+  --muted: 161 161 170;
+  --line: 39 45 56;
+  --accent: 129 140 248;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background: rgb(var(--canvas));
+  color: rgb(var(--ink));
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--line)) transparent;
+}

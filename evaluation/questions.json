@@ -1,0 +1,36 @@
+{
+  "corpus": [
+    {
+      "filename": "photosynthese.pdf",
+      "pages": [
+        "La photosynthese est le processus par lequel les plantes convertissent la lumiere en energie chimique. Les reactifs sont l'eau et le dioxyde de carbone.",
+        "Le produit principal de la photosynthese est le glucose. L'oxygene est un sous-produit libere dans l'atmosphere."
+      ]
+    },
+    {
+      "filename": "respiration.pdf",
+      "pages": [
+        "La respiration cellulaire consomme du glucose et de l'oxygene. Elle produit du dioxyde de carbone, de l'eau et de l'ATP.",
+        "Conclusion : photosynthese et respiration sont complementaires dans le cycle du carbone."
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "reactifs",
+      "question": "Quels sont les reactifs de la photosynthese ?",
+      "document": "photosynthese.pdf",
+      "must_contain_any": ["eau", "dioxyde", "carbone"],
+      "expect_sources": true,
+      "unanswerable": false
+    },
+    {
+      "id": "wifi",
+      "question": "Quel est le mot de passe Wi-Fi du campus ?",
+      "document": "photosynthese.pdf",
+      "must_contain_any": [],
+      "expect_sources": false,
+      "unanswerable": true
+    }
+  ]
+}
