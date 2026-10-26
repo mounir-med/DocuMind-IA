@@ -1,179 +1,147 @@
 # DocuMind AI
 
-Assistant IA professionnel de question-réponse sur documents PDF basé sur l'architecture RAG (Retrieval-Augmented Generation).
+DocuMind AI est une application web qui permet d’importer des documents PDF, de leur poser des questions et de créer des supports de révision. Les réponses s’appuient sur les passages retrouvés dans les documents (RAG) et affichent leurs sources.
 
-## 🎯 Fonctionnalités
+## Fonctionnalités
 
-- **Dashboard** : Statistiques d'utilisation et métriques en temps réel
-- **Gestion des PDF** : Upload multi-fichiers, dédoublonnage SHA-256, prévisualisation
-- **Chat RAG Intelligent** : Questions-réponses contextuelles avec sources traçables
-- **Génération de Résumés** : Court, détaillé, ou par chapitre
-- **QCM Interactifs** : Génération automatique de quiz avec validation
-- **Comparaison de Documents** : Analyse comparative multi-PDF
-- **Paramètres Avancés** : Configuration LLM, chunking, et retrieval
+- Import et indexation de plusieurs PDF
+- Chat avec les documents et affichage des sources utilisées
+- Résumés courts ou détaillés, synthèses par chapitre, idées principales, définitions et fiches de révision
+- QCM adaptés au contenu des documents, avec plusieurs niveaux de difficulté
+- Comparaison de documents
+- Tableau de bord et réglages du modèle IA
 
-## 🛠️ Stack Technique
+## Architecture
 
-### Frontend
-- Next.js 14+ (App Router, TypeScript)
-- Tailwind CSS + shadcn/ui
-- React Markdown, Framer Motion
-- Mode sombre/clair
+- **Frontend :** Next.js, React, TypeScript et Tailwind CSS
+- **Backend :** FastAPI et Python
+- **Documents et index :** extraction PDF avec PyMuPDF, embeddings multilingues et ChromaDB
+- **Métadonnées :** SQLite
+- **Génération :** Ollama local ou API compatible OpenAI
 
-### Backend
-- Python 3.11+
-- FastAPI + Pydantic v2
-- PyMuPDF (extraction PDF)
-- ChromaDB (base vectorielle)
-- sentence-transformers (embeddings multilingues)
-- SQLite (métadonnées)
+## Prérequis
 
-## 📋 Prérequis
+- Windows 10/11 et PowerShell (les scripts fournis sont conçus pour Windows)
+- Python 3.11 ou plus récent
+- Node.js 18 ou plus récent et npm
+- Un fournisseur LLM pour générer les réponses, résumés et QCM : Ollama local ou une clé API OpenAI
 
-- Node.js 18+
-- Python 3.11+
-- npm ou yarn
-- pip
+## Installation et démarrage rapide
 
-## 🚀 Installation & Lancement
+À partir du dossier du projet, ouvrez deux terminaux PowerShell.
 
-### ⚡ Démarrage Rapide (2 Minutes)
+**Terminal 1 — backend :**
 
-**Terminal 1 - Backend:**
 ```powershell
 .\start-backend.ps1
 ```
 
-**Terminal 2 - Frontend:**
+**Terminal 2 — frontend :**
+
 ```powershell
 .\start-frontend.ps1
 ```
 
-Puis ouvrez **http://localhost:3000** 🎉
+L’application est disponible sur [http://localhost:3000](http://localhost:3000). La documentation interactive de l’API est disponible sur [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
+Les scripts de démarrage installent les dépendances manquantes dans les environnements locaux du projet lorsqu’ils en ont besoin. Pour tout installer avant le démarrage, utilisez :
 
-## 🤖 Configurer le LLM (indispensable)
+```powershell
+.\scripts\setup.ps1
+```
 
-Sans LLM, l'application est en **mode démonstration** : elle ne génère aucune réponse, aucun résumé ni QCM
-(seules les sources retrouvées sont affichées).
+## Configurer la génération IA
 
-1. Ouvrez `backend/.env` (copié depuis `backend/.env.example`).
-2. Choisissez **un** fournisseur :
-   - **Ollama** (local, gratuit) : `LLM_PROVIDER=ollama` et `OLLAMA_MODEL=llama3.1:latest`.
-   - **OpenAI** : `LLM_PROVIDER=openai` et `OPENAI_API_KEY=sk-...`.
-3. Pour Windows, ouvrez PowerShell et lancez `ollama serve` (ou démarrez l'application Ollama), puis
-   `ollama pull llama3.1:latest`. Vérifiez le nom réellement installé avec `ollama list` et utilisez
-   exactement ce nom dans `OLLAMA_MODEL` et `LLM_MODEL`.
-4. Redémarrez le backend. Dans *Paramètres*, le modèle effectif est affiché et **Tester la connexion IA**
-   vérifie que le service Ollama répond et que le modèle sélectionné est installé.
-5. Les paramètres enregistrés dans la base priment sur `.env`. Modifiez le fournisseur et le modèle dans
-   *Paramètres* pour les appliquer immédiatement, ou supprimez seulement les réglages correspondants de la
-   base si vous souhaitez reprendre les valeurs de `.env`.
+Sans fournisseur LLM configuré, l’application peut afficher les passages trouvés, mais ne génère pas de réponses IA, de résumés ni de QCM.
 
-Le téléchargement du modèle n'est jamais lancé par l'application ; les modèles Ollama peuvent être volumineux.
-Sans LLM configuré, les réponses de démonstration sont explicitement marquées et aucun résumé ou QCM fictif n'est généré.
+1. Copiez le modèle de configuration :
 
-## 📄 Qualité d'extraction des PDF
+   ```powershell
+   Copy-Item backend/.env.example backend/.env
+   ```
 
-Certains PDF (exports Keynote/PowerPoint) ont des ligatures mal encodées (`Introduc=on`). Le backend les
-répare automatiquement (`repair_text` dans `backend/app/document_processing/pdf.py`). Si vous aviez importé
-un document avant cette correction, **supprimez-le et réimportez-le** pour reconstruire l'index.
+2. Ouvrez `backend/.env` et choisissez un fournisseur.
 
-### 📖 Documentation Complète
+   **Ollama local :** gardez `LLM_PROVIDER=ollama`, installez et démarrez Ollama, puis téléchargez un modèle :
 
-- **[DEMARRAGE-RAPIDE.md](./docs/archive/DEMARRAGE-RAPIDE.md)** - Guide utilisateur complet
-- **[STATUS.md](./docs/archive/STATUS.md)** - État technique du projet
-- **[REPRISE-COMPLETE.md](./docs/archive/REPRISE-COMPLETE.md)** - Documentation reprise
-- **[AIDE-MEMOIRE.md](./docs/archive/AIDE-MEMOIRE.md)** - Aide-mémoire développeur
+   ```powershell
+   ollama pull llama3.1
+   ollama list
+   ```
 
-### 🔍 Vérification Installation
+   Le nom du modèle configuré dans `OLLAMA_MODEL` doit correspondre à celui affiché par `ollama list`. Le modèle et Ollama utilisent la mémoire et les ressources de votre ordinateur.
+
+   **OpenAI :** définissez `LLM_PROVIDER=openai`, puis renseignez `OPENAI_API_KEY` et le modèle pris en charge dans `LLM_MODEL`.
+
+3. Redémarrez le backend après toute modification du fichier `.env`.
+
+Les valeurs enregistrées dans la page **Paramètres** peuvent remplacer les valeurs du fichier `.env`. Les clés API doivent rester dans le fichier local `backend/.env` et ne doivent pas être publiées.
+
+## Configuration du frontend
+
+Le frontend utilise par défaut `http://127.0.0.1:8000` pour joindre l’API. Si nécessaire, copiez `frontend/.env.example` vers `frontend/.env.local` et modifiez `NEXT_PUBLIC_API_URL`.
+
+## Installation manuelle
+
+### Backend
+
+```powershell
+cd backend
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+Copy-Item .env.example .env
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+### Frontend
+
+Dans un autre terminal :
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+## Données locales
+
+La base de métadonnées, l’index vectoriel et les PDF importés sont conservés localement dans `data/`. Ils sont ignorés par Git et ne sont pas inclus dans le dépôt. Pensez à sauvegarder séparément les documents que vous souhaitez conserver.
+
+## Vérifications
+
+Le script suivant vérifie la configuration locale et les services du projet :
 
 ```powershell
 .\verify.ps1
 ```
 
-### Configuration Manuelle (Optionnel)
-
-#### Backend
+Tests du backend :
 
 ```powershell
 cd backend
-python -m venv .venv
-.\.venv\Scripts\activate  # Windows
-pip install -r requirements.txt
-
-# Configurer les variables d'environnement
-copy .env.example .env
-# Éditer .env avec vos clés API
-
-# Lancer le serveur
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+pytest -v
 ```
 
-#### Frontend
+Vérifications du frontend :
 
 ```powershell
 cd frontend
-npm install
-
-# Configurer les variables d'environnement (optionnel)
-copy .env.example .env.local
-
-# Lancer le serveur de développement
-npm run dev
-```
-
-## 🧪 Tests
-
-### Backend
-```bash
-cd backend
-pytest -v --cov=app
-```
-
-### Frontend
-```bash
-cd frontend
-npm run test
 npm run typecheck
 npm run lint
+npm test
 npm run build
 ```
 
-## 📚 Documentation
+## Documentation
 
-**📌 [INDEX-DOCUMENTATION.md](./INDEX-DOCUMENTATION.md)** - Index complet de toute la documentation
+- [Architecture](docs/architecture.md)
+- [API](docs/api.md)
+- [Pipeline RAG](docs/rag-pipeline.md)
+- [Guide de tests](docs/testing.md)
+- [Présentation](docs/presentation.md)
+- [Documentation archivée](docs/archive/)
 
-### 🚀 Guides de Démarrage
-- **[COMMENCER-ICI.md](./COMMENCER-ICI.md)** - 👈 **COMMENCEZ PAR ICI !**
-- [DEMARRAGE-RAPIDE.md](./docs/archive/DEMARRAGE-RAPIDE.md) - Guide utilisateur complet
-- [AIDE-MEMOIRE.md](./docs/archive/AIDE-MEMOIRE.md) - Commandes et configuration rapides
+## Licence
 
-### 📖 Documentation Technique
-- [STATUS.md](./docs/archive/STATUS.md) - État complet du projet
-- [REPRISE-COMPLETE.md](./docs/archive/REPRISE-COMPLETE.md) - Documentation de reprise
-- [ARCHITECTURE-VISUELLE.md](./ARCHITECTURE-VISUELLE.md) - Schémas et diagrammes
-- [GUIDE-DEVELOPPEUR.md](./GUIDE-DEVELOPPEUR.md) - Guide pour développeurs
-
-### 📋 Documentation Détaillée
-- [Architecture](./docs/architecture.md) - Architecture technique
-- [Pipeline RAG](./docs/rag-pipeline.md) - Détails du pipeline RAG
-- [API Documentation](./docs/api.md) - Documentation API REST
-- [Guide de Tests](./docs/testing.md) - Guide de tests
-- [Présentation](./docs/presentation.md) - Présentation du projet
-
-## 🔒 Sécurité
-
-- Dédoublonnage des fichiers par empreinte SHA-256
-- Validation stricte des entrées (Pydantic)
-- Rate limiting sur les endpoints
-- Protection contre l'injection de prompt
-- Variables d'environnement pour les secrets
-
-## 📝 Licence
-
-MIT
-
-## 👥 Contributeurs
-
-Projet développé dans le cadre d'une démonstration d'architecture RAG professionnelle.
+Le dépôt ne contient pas de fichier de licence. Vérifiez les droits applicables aux dépendances et aux documents importés avant toute redistribution.
